@@ -11,9 +11,12 @@ class VendingMachine(Display):
         self.__display = display
         display.print("INSERT COIN")
 
+    def insert(self):
+        self.__display.print("$0.05")
+
 class VendingMachineShould(TestCase):
     def test_display_insert_coin_when_it_is_started(
-        self,
+        self
     ):
         display = Display()
         display.print = MagicMock()
@@ -21,4 +24,12 @@ class VendingMachineShould(TestCase):
         VendingMachine(display)
 
         display.print.assert_called_once_with("INSERT COIN")
+
+    def test_display_five_cents_when_nickel_is_inserted(self):
+        display = Display()
+        display.print = MagicMock()
+
+        VendingMachine(display).insert()
+
+        display.print.assert_called_with("$0.05")
 
