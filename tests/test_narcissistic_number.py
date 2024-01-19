@@ -1,7 +1,6 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from assertpy import assert_that
 
 class Display:
     def print(self, text: str):
@@ -22,5 +21,4 @@ class VendingMachineShould(TestCase):
         VendingMachine(display)
 
         display.print.assert_called_once_with("INSERT COIN")
-        assert_that(display.print.called).is_true()
 
